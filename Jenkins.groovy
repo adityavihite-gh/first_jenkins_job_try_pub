@@ -10,9 +10,9 @@ pipeline {
             steps {
                 script{
                     echo "Hello"
-                    sh 'pip install pandas'
-                    sh 'pip install axonius-api-client'
-                    sh 'pip install snowflake-connector-python'
+                    bat 'pip install pandas'
+                    bat 'pip install axonius-api-client'
+                    bat 'pip install snowflake-connector-python'
                 }
                 
             }
