@@ -1,0 +1,82 @@
+pipeline{
+    agent any
+
+    stages{
+        stage("Pull API DATA")
+        {
+            parallel{
+                stage("EC2"){
+                    agent any
+                    stages{
+                        stage("Account wise EC2")
+                        {
+                            parallel{
+                                stage("ACCOUNT1")
+                                {
+                                    steps{
+                                        echo "Hi this is EC2 of Account 1"
+                                    }
+                                }
+                                stage("Account 2")
+                                {
+                                    steps{
+                                        echo "Hi this is EC2 of Account 2"
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                stage("RDS"){
+                    agent any
+                    stages{
+                        stage("Account wise RDS")
+                        {
+                            parallel{
+                                stage("ACCOUNT1")
+                                {
+                                    steps{
+                                        echo "Hi this is RDS of Account 1"
+                                    }
+                                }
+                                stage("Account 2")
+                                {
+                                    steps{
+                                        echo "Hi this is RDS of Account 2"
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                stage("S3"){
+                    agent any
+                    stages{
+                        stage("Account wise")
+                        {
+                            parallel{
+                                stage("ACCOUNT1")
+                                {
+                                    steps{
+                                        echo "Hi this is S3 of Account 1"
+                                    }
+                                }
+                                stage("Account 2")
+                                {
+                                    steps{
+                                        echo "Hi this is S3 of Account 2"
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+
+}
